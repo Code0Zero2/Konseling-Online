@@ -9,6 +9,7 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,18 +17,22 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="asset/css/style.css">
   <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
+
 <body>
 
   <!-- ======== Navbar ======== -->
   <header>
     <nav class="navbar">
-      <img src="assets/img/logo.png" alt="Logo" class="logo">
+      <!-- <img src="assets/img/logo.png" alt="Logo" class="logo"> -->
       <ul>
         <li><a href="index.php">Beranda</a></li>
         <li><a href="about.html">Tentang</a></li>
         <li><a href="edukasi.php" class="active">Artikel</a></li>
-        <li><a href="daftar_jadwal copy.php">Konseling</a></li>
+        <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
+      <a href="signin.php" class="no-undlin">
+        <button class="btn-primary-log">Masuk</button>
+      </a>
     </nav>
   </header>
 
@@ -38,8 +43,8 @@ $result = $conn->query($sql);
 
       <?php
       if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-              echo "
+        while ($row = $result->fetch_assoc()) {
+          echo "
               <div class='artikel-card'>
                 <h2>{$row['judul']}</h2>
                 <p class='tanggal'>Diterbitkan pada: {$row['tanggal']}</p>
@@ -47,9 +52,9 @@ $result = $conn->query($sql);
                 <a href='artikel_detail.php?id={$row['artikel_id']}' class='btn-baca'>Baca Selengkapnya</a>
               </div>
               ";
-          }
+        }
       } else {
-          echo "<p>Tidak ada artikel yang tersedia saat ini.</p>";
+        echo "<p>Tidak ada artikel yang tersedia saat ini.</p>";
       }
 
       $conn->close();
@@ -63,4 +68,5 @@ $result = $conn->query($sql);
   </footer>
 
 </body>
+
 </html>

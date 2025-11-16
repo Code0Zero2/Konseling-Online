@@ -21,8 +21,10 @@
                 <li><a href="edukasi.php">Artikel</a></li>
                 <li><a href="daftar_jadwal.php">Konseling</a></li>
             </ul>
-              <a href="signin.php"><button class="btn-primary-log">Masuk</button></a>
-        </nav>
+            <a href="signin.php" class="no-undlin">
+              <button class="btn-primary-log">Masuk</button>
+            </a>
+          </nav>
     </header>
 
     <!-- ======== Welcome Section ======== -->

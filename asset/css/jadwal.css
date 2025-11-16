@@ -14,9 +14,9 @@ header {
  
 .navbar {
   display: flex;
-  /* justify-content: space-between; */
   justify-content: space-between;
-  
+  /* justify-content: center; */
+  /* text-align: center; */
   align-items: center;
   padding: 15px 8%;
 
@@ -40,11 +40,31 @@ header {
   transition: 0.3s;
 }
 
+.navbar a.no-undlin:hover, .navbar a.no-undlin.active {
+  border-bottom: none ;
+    padding-bottom: 0 ;
+} 
+
 .navbar a:hover, .navbar a.active {
   color: #008f85;
   border-bottom: 2px solid #008f85;
   padding-bottom: 4px;
 } 
+
+.btn-primary-log {
+  background-color: #008f85;
+  color: #fff;
+  border: none;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary-log:hover {
+  background-color: #007970;
+}
 
 /* body {
     font-family: "Poppins", sans-serif;

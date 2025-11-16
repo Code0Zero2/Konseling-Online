@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form>
+        <form action="signin_proses.php" method="POST">
             <label>Email</label>
             <input type="email" name="email" placeholder="Masukkan email" required>
             <label>Password</label>

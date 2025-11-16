@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2025 at 05:25 AM
+-- Generation Time: Nov 16, 2025 at 04:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -140,19 +140,21 @@ CREATE TABLE `users` (
   `nama` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `role` enum('dokter','pasien') DEFAULT NULL
+  `role` enum('dokter','pasien') DEFAULT NULL,
+  `no_hp` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `nama`, `email`, `password`, `role`) VALUES
-(1, 'Dr. Budi Santoso', 'budi@konseling.com', '12345', 'dokter'),
-(2, 'Dr. Sinta Lestari', 'sinta@konseling.com', '12345', 'dokter'),
-(3, 'Andi Pratama', 'andi@gmail.com', '12345', 'pasien'),
-(4, 'Rina Ayu', 'rina@gmail.com', '12345', 'pasien'),
-(5, 'Teguh Hadi', 'teguh@gmail.com', '12345', 'pasien');
+INSERT INTO `users` (`user_id`, `nama`, `email`, `password`, `role`, `no_hp`) VALUES
+(1, 'Dr. Budi Santoso', 'budi@konseling.com', '12345', 'dokter', NULL),
+(2, 'Dr. Sinta Lestari', 'sinta@konseling.com', '12345', 'dokter', NULL),
+(3, 'Andi Pratama', 'andi@gmail.com', '12345', 'pasien', NULL),
+(4, 'Rina Ayu', 'rina@gmail.com', '12345', 'pasien', NULL),
+(5, 'Teguh Hadi', 'teguh@gmail.com', '12345', 'pasien', NULL),
+(6, 'yanto', 'yanto@gmail.com', '123', 'pasien', '+6212312121212');
 
 --
 -- Indexes for dumped tables
@@ -228,7 +230,7 @@ ALTER TABLE `rating_testimoni`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

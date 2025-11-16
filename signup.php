@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Daftar Akun Baru</h2>
-        <form action="#" method="POST">    
+        <form action="signup_proses.php" method="POST">    
             <label>Nama Lengkap</label>
             <input type="text" name="nama" placeholder="Masukkan nama lengkap" required>
             <label>Email</label>
@@ -18,13 +18,12 @@
             <input type="password" name="password" placeholder="Masukkan password" required>
             <label>Pasien/Dokter</label>
             <select name="role" id="role" require>
-                <option value="">--Pilih--</option>
+                <option value="" >--Pilih--</option>
                 <option value="pasien">Pasien</option>
                 <option value="dokter">Dokter</option>
             </select>
-            <!-- <input type="text" name="nohp" placeholder="Masukkan nomor hp" required> -->
-            <!-- <label>Alamat</label>
-            <textarea name="alamat" placeholder="Masukkan alamat lengkap" required></textarea> -->
+            <label>Nomor Hp</label>
+            <input type="text" name="nohp" placeholder="Masukkan nomor hp (+62)" required>
             <button type="submit">Daftar Sekarang</button>
         </form>
         <div class="footer">
