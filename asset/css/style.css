@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+header {
+  background-color: #e0f7f4;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  justify-content: right;
+}
+ 
+.navbar {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  /* text-align: center; */
+  align-items: center;
+  padding: 15px 8%;
+
+}
+
+.navbar .logo {
+  width: 120px;
+  height: auto;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #006d67;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar a:hover, .navbar a.active {
+  color: #008f85;
+  border-bottom: 2px solid #008f85;
+  padding-bottom: 4px;
+} 
+
+/* profil singkat */
+
+.hero {
+  text-align: center;
+  padding: 100px 10%;
+  background: linear-gradient(to bottom right, #c8f1eb, #e3fcf8);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #004d47;
+}
+
+.hero p {
+  margin: 15px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #008f85;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #007970;
+}
+
+.btn-primary-log {
+  background-color: #008f85;
+  color: #fff;
+  border: none;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary-log:hover {
+  background-color: #007970;
+}
+
+/* ========== ABOUT PAGE ========== */
+.about-section, .team-section {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.about-section p {
+  max-width: 800px;
+  margin: 15px auto;
+}
+
+.team-section .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-section .card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  width: 300px;
+}
+
+.team-section h2 {
+  color: #006d67;
+  margin-bottom: 20px;
+}
+
+/* ========== EDUKASI PAGE ========== */
+.artikel-section {
+  padding: 60px 10%;
+}
+
+.artikel-card {
+  background: #fff;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.artikel-card h2 {
+  color: #004d47;
+}
+
+.artikel-card .tanggal {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.btn-baca {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  background-color: #009c91;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-baca:hover {
+  background-color: #007c73;
+}
+
+/* ========== ARTIKEL DETAIL ========== */
+.artikel-container {
+  padding: 60px 10%;
+  background: #fff;
+  margin: 40px auto;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.btn-kembali {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #009c91;
+  font-weight: 500;
+}
+
+.btn-kembali:hover {
+  color: #00766b;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background-color: #e0f7f4;
+  color: #004d47;
+  text-align: center;
+  padding: 15px;
+  margin-top: 60px;
+}
+
+/* ====tabel===== */
+.container-jadwal{
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    border: 1px solid rgb(114, 114, 114) ;
+    box-shadow: 5px 5px rgba(131, 131, 131, 0.37);
+    border-radius: 10px;
+}
+
+.tab-con{
+    padding: 50px;
+    
+}
+
+.t-jadwal{
+    width: 100%;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); 
+    border-radius: 0 0 5px 5px;
+    border-collapse: collapse;
+}
+
+th{
+    /* background-color: rgb(0, 0, 104); */
+    background-color: #8bc2ba;
+    /* color: white; */
+    padding: 10px;
+    text-align: center;
+    border : 1px #dbdbdb solid;
+
+}
+
+td{
+    padding: 10px;
+    text-align: left;
+    border : 1px #dbdbdb solid;
+}
+
+/* === testimoni === */
+.scroll-container {
+  margin: 0px 50px;
+  display: flex;
+  overflow-x: auto;
+  /* overflow-y: hidden; */
+  gap: 15px;
+  padding: 20px;
+  scroll-behavior: auto;
+  cursor: grab;
+  /* white-space: nowrap; */
+  scrollbar-width: none;
+}
+.scroll-container.active {
+  cursor: grabbing;
+}
+.card-testi {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 150px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.486);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
