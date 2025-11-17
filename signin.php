@@ -5,7 +5,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="asset/css/LogReg.css">
 </head>
-<body>
+<body>PS C:\xampp\htdocs\sehatjiwaNew> git pull origin main
     <div class="container">
         <h2>Login</h2>
         <form action="signin_proses.php" method="POST">
@@ -16,7 +16,7 @@
             <button type="submit">Login</button>
         </form>
         <div class="footer">
-            Belum punya akun? <a href="signup.php">Daftar</a>
+             <a href="signup.php">Daftar</a>
         </div>
     </div>
 </body>
