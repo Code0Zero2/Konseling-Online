@@ -12,7 +12,7 @@
             <label>Email</label>
             <input type="email" name="email" placeholder="Masukkan email" required>
             <label>Password</label>
-            <input type="password" name="password" placeholder="Masukkan password" required minlength="6">
+            <input type="password" name="password" placeholder="Masukkan password" required>
             <button type="submit">Login</button>
         </form>
         <div class="footer">

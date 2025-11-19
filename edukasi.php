@@ -1,10 +1,9 @@
 <?php
-// Koneksi ke database
+session_start();
 include 'connection.php';
 
-// Ambil data artikel dari tabel 'artikel'
-$sql = "SELECT * FROM artikel ORDER BY tanggal DESC";
-$result = $conn->query($sql);
+// Ambil ID pasien jika login
+$pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,6 @@ $result = $conn->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edukasi - Kesehatan Mental</title>
   <link rel="stylesheet" href="asset/css/style.css">
-  <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
 
 <body>
@@ -42,16 +40,18 @@ $result = $conn->query($sql);
       <h1>Artikel Edukasi Kesehatan Mental</h1>
 
       <?php
-      if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-          echo "
+      include 'connection.php';
+      $query = mysqli_query($conn, "SELECT * FROM artikel ORDER BY tanggal DESC");
+      if ($query->num_rows > 0) {
+        while ($row = mysqli_fetch_array($query)) {
+      ?>
               <div class='artikel-card'>
-                <h2>{$row['judul']}</h2>
-                <p class='tanggal'>Diterbitkan pada: {$row['tanggal']}</p>
-                <p>" . nl2br(substr($row['isi'], 0, 300)) . "...</p>
-                <a href='artikel_detail.php?id={$row['artikel_id']}' class='btn-baca'>Baca Selengkapnya</a>
+                <h2><?= $row['judul'] ?></h2>
+                <p class='tanggal'>Diterbitkan pada: <?= $row['tanggal'] ?></p>
+                <p><?= substr($row['isi'], 0, 100) ?>...</p>
+                <a href='artikel_detail.php?id=<?= $row['artikel_id'] ?>' class='btn-baca'>Baca Selengkapnya</a>
               </div>
-              ";
+      <?php
         }
       } else {
         echo "<p>Tidak ada artikel yang tersedia saat ini.</p>";
