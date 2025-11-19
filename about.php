@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Kami - Edukasi Kesehatan Mental</title>
   <link rel="stylesheet" href="asset/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
 <body>
@@ -15,7 +18,7 @@
       <!-- <img src="assets/img/logo.png" alt="Logo" class="logo"> -->
       <ul>
         <li><a href="index.php">Beranda</a></li>
-        <li><a href="about.html" class="active">Tentang</a></li>
+        <li><a href="about.php" class="active">Tentang</a></li>
         <li><a href="edukasi.php">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>

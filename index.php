@@ -39,7 +39,7 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
     <nav class="navbar">
       <ul>
         <li><a href="index.php" class="active">Beranda</a></li>
-        <li><a href="about.html">Tentang</a></li>
+        <li><a href="about.php">Tentang</a></li>
         <li><a href="edukasi.php">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>

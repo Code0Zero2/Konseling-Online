@@ -179,7 +179,7 @@ function batalkanBooking(bookingId) {
     <nav class="navbar">
         <ul>
             <li><a href="index.php" >Beranda</a></li>
-            <li><a href="about.html">Tentang</a></li>
+            <li><a href="about.php">Tentang</a></li>
             <li><a href="edukasi.php">Artikel</a></li>
             <li><a href="daftar_jadwal.php" class="active">Konseling</a></li>
         </ul>

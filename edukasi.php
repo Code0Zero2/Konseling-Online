@@ -41,7 +41,7 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
       <!-- <img src="assets/img/logo.png" alt="Logo" class="logo"> -->
       <ul>
         <li><a href="index.php">Beranda</a></li>
-        <li><a href="about.html">Tentang</a></li>
+        <li><a href="about.php">Tentang</a></li>
         <li><a href="edukasi.php" class="active">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
