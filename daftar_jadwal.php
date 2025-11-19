@@ -72,8 +72,13 @@ $sql_total = "
     SELECT COUNT(*) AS total
     FROM jadwal_dokter j
     JOIN users u ON j.dokter_id = u.user_id
-    WHERE u.role='dokter' $filter_query
+    LEFT JOIN booking b ON j.jadwal_id = b.jadwal_id
+    WHERE u.role='dokter'
+    AND j.status = 'tersedia'
+    AND b.booking_id IS NULL
+    $filter_query
 ";
+
 
 $result_total = mysqli_query($conn, $sql_total);
 $total_rows   = mysqli_fetch_assoc($result_total)['total'];
@@ -85,7 +90,11 @@ $sql_jadwal = "
     SELECT j.*, u.nama AS nama_dokter
     FROM jadwal_dokter j
     JOIN users u ON j.dokter_id = u.user_id
-    WHERE u.role='dokter' $filter_query
+    LEFT JOIN booking b ON j.jadwal_id = b.jadwal_id
+    WHERE u.role='dokter'
+    AND j.status = 'tersedia'
+    AND b.booking_id IS NULL
+    $filter_query
     ORDER BY j.tanggal ASC
     LIMIT $start, $limit
 ";
@@ -177,7 +186,7 @@ function batalkanBooking(bookingId) {
 
         <?php if(isset($_SESSION['id_pasien'])): ?>
             <a href="profile.php" class="no-undlin">
-              <button class="btn-primary-log">Profile</button>
+              <button class="btn-primary-log">Logout</button>
             </a>
         <?php else: ?>
             <a href="signin.php" class="no-undlin">
@@ -214,7 +223,7 @@ function batalkanBooking(bookingId) {
         <?php if (mysqli_num_rows($query) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($query)): ?>
             <div class="card">
-                <h4>Dr. <?= $row['nama_dokter'] ?></h4>
+                <h4><?= $row['nama_dokter'] ?></h4>
                 <p>📅 <?= date('d F Y', strtotime($row['tanggal'])) ?> — ⏰ <?= $row['jam'] ?></p>
 
                 <?php if ($row['status'] == 'tersedia'): ?>
