@@ -9,6 +9,6 @@ $nohp = $_POST['nohp'];
 $query = mysqli_query($conn, "INSERT INTO users(nama, email, password, role, no_hp)
                             VALUE ('$nama', '$email', '$password', '$role', '$nohp')
                         ");
-header("location:login.php");
+header("location:signin.php");
 
 ?>
