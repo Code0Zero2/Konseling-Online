@@ -259,30 +259,32 @@ function batalkanBooking(bookingId) {
     <!-- BAGIAN KANAN: MONITORING -->
     <div class="section right">
         <h3>📋 Monitoring Jadwal Saya</h3>
+        <div class="scroll">
 
-        <?php if ($pasien_id && mysqli_num_rows($booking_query) > 0): ?>
-            <?php while($book = mysqli_fetch_assoc($booking_query)): ?>
-                <div class="card" id="booking-<?= $book['booking_id'] ?>">
-                    <h4>Dr. <?= $book['nama_dokter']; ?></h4>
-                    <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= $book['jam'] ?></p>
-
-                    <p>Status:
-                        <span class="badge <?= $book['status_booking']=='menunggu'?'bg-warning':($book['status_booking']=='selesai'?'bg-success':'bg-danger') ?>">
-                            <?= ucfirst($book['status_booking']) ?>
-                        </span>
-                    </p>
-
-                    <a href="detail_booking.php?booking_id=<?= $book['booking_id'] ?>" class="btn btn-detail">Detail Booking</a>
-                    
-                    <?php if ($book['status_booking'] != 'selesai'): ?>
-                        <button onclick="batalkanBooking(<?= $book['booking_id'] ?>)" class="btn btn-batal">Batalkan</button>
-                    <?php endif; ?>
-                </div>
-            <?php endwhile; ?>
-
-        <?php else: ?>
-            <p class="no-data">Belum ada jadwal yang dibooking.</p>
-        <?php endif; ?>
+            <?php if ($pasien_id && mysqli_num_rows($booking_query) > 0): ?>
+                <?php while($book = mysqli_fetch_assoc($booking_query)): ?>
+                    <div class="card" id="booking-<?= $book['booking_id'] ?>">
+                        <h4> <?= $book['nama_dokter']; ?></h4>
+                        <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= $book['jam'] ?></p>
+    
+                        <p>Status:
+                            <span class="badge <?= $book['status_booking']=='menunggu'?'bg-warning':($book['status_booking']=='selesai'?'bg-success':'bg-danger') ?>">
+                                <?= ucfirst($book['status_booking']) ?>
+                            </span>
+                        </p>
+    
+                        <a href="detail_booking.php?booking_id=<?= $book['booking_id'] ?>" class="btn btn-detail">Detail Booking</a>
+                        
+                        <?php if ($book['status_booking'] != 'selesai'): ?>
+                            <button onclick="batalkanBooking(<?= $book['booking_id'] ?>)" class="btn btn-batal">Batalkan</button>
+                        <?php endif; ?>
+                    </div>
+                <?php endwhile; ?>
+    
+            <?php else: ?>
+                <p class="no-data">Belum ada jadwal yang dibooking.</p>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 

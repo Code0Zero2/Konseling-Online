@@ -15,8 +15,6 @@ header {
 .navbar {
   display: flex;
   justify-content: space-between;
-  /* justify-content: center; */
-  /* text-align: center; */
   align-items: center;
   padding: 15px 8%;
 
@@ -66,12 +64,6 @@ header {
   background-color: #007970;
 }
 
-/* body {
-    font-family: "Poppins", sans-serif;
-    background: #f4f6fa;
-    margin: 0;
-    padding: 0;
-} */
 .container {
     display: flex;
     flex-direction: row;
@@ -83,7 +75,7 @@ header {
 .section {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.363);
     padding: 20px;
 }
 .left {
@@ -92,11 +84,23 @@ header {
 .right {
     flex: 1;
     max-height: 750px;
-    overflow-y: auto;
     padding-right: 10px;
+    padding-top: 20px;
 }
+
+.scroll{
+    border-radius: 10px;
+    height: calc(100% - 55px);   
+    overflow-y: auto;
+}
+
+.right h3 {
+    margin-bottom: 15px;
+}
+
 h3 {
-    border-left: 5px solid #007bff;
+    border-left: 5px solid #13867f;
+    margin-bottom: 5px;
     padding-left: 10px;
     color: #333;
 }
@@ -114,7 +118,7 @@ h3 {
     margin-top: 5px;
 }
 .filter-btn {
-    background: #007bff;
+    background: #009480;
     color: white;
     border: none;
     padding: 8px 15px;
@@ -123,7 +127,7 @@ h3 {
     margin-top: 10px;
 }
 .filter-btn:hover {
-    background: #0056b3;
+    background: #006154;
 }
 .reset-btn {
     background: #aaa;
@@ -146,7 +150,7 @@ h3 {
 }
 .card h4 {
     margin: 0 0 5px;
-    color: #007bff;
+    color: #03291d;
 }
 .status {
     font-weight: bold;
@@ -163,10 +167,10 @@ h3 {
     margin-top: 8px;
 }
 .btn-booking {
-    background: #007bff;
+    background: #28b98e;
 }
 .btn-booking:hover {
-    background: #0056b3;
+    background: #22a07a;
 }
 .btn-disabled {
     background: #ccc;
@@ -218,12 +222,12 @@ h3 {
 }
 
 .history {
-    width: 90%;
+    width: 100% auto;
     background: #fff;
-    margin: 30px 50px 30px 50px;
+    margin: 30px 100px 30px 100px;
     /* margin-top: 30px; */
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.363);
 }
 
