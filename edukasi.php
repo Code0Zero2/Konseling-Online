@@ -16,6 +16,23 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
   <link rel="stylesheet" href="asset/css/style.css">
 </head>
 
+<?php if (isset($_SESSION['logout_success'])): ?>
+<div id="popup-logout" class="popup-overlay">
+  <div class="popup-box">
+      <h3>Berhasil Logout</h3>
+      <p>Kamu telah keluar dari akun.</p>
+      <button id="closePopup">Tutup</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById("closePopup").addEventListener("click", function() {
+      document.getElementById("popup-logout").style.display = "none";
+  });
+</script>
+
+<?php unset($_SESSION['logout_success']); endif; ?>
+
 <body>
 
   <!-- ======== Navbar ======== -->

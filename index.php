@@ -16,12 +16,27 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
 
   <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
+<?php if (isset($_SESSION['logout_success'])): ?>
+<div id="popup-logout" class="popup-overlay">
+  <div class="popup-box">
+      <h3>Berhasil Logout</h3>
+      <p>Kamu telah keluar dari akun.</p>
+      <button id="closePopup">Tutup</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById("closePopup").addEventListener("click", function() {
+      document.getElementById("popup-logout").style.display = "none";
+  });
+</script>
+
+<?php unset($_SESSION['logout_success']); endif; ?>
 
 <body>
   <!-- ======== Navbar ======== -->
   <header>
     <nav class="navbar">
-      <!-- <img src="assets/img/logo.png" alt="Logo" class="logo"> -->
       <ul>
         <li><a href="index.php" class="active">Beranda</a></li>
         <li><a href="about.html">Tentang</a></li>
@@ -29,8 +44,8 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
       <?php if (isset($_SESSION['id_pasien'])): ?>
-        <a href="profile.php" class="no-undlin">
-          <button class="btn-primary-log">Profile</button>
+        <a href="logout.php" class="no-undlin">
+          <button class="btn-primary-log">Logout</button>
         </a>
       <?php else: ?>
         <a href="signin.php" class="no-undlin">
