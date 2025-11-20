@@ -1,4 +1,9 @@
 <?php
+session_start();
+include 'connection.php';
+
+// Ambil ID pasien jika login
+$pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -10,6 +15,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
+
+<?php if (isset($_SESSION['logout_success'])): ?>
+<div id="popup-logout" class="popup-overlay">
+  <div class="popup-box">
+      <h3>Berhasil Logout</h3>
+      <p>Kamu telah keluar dari akun.</p>
+      <button id="closePopup">Tutup</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById("closePopup").addEventListener("click", function() {
+      document.getElementById("popup-logout").style.display = "none";
+  });
+</script>
+
+<?php unset($_SESSION['logout_success']); endif; ?>
 <body>
 
   <!-- ======== Navbar ======== -->
@@ -22,9 +44,15 @@
         <li><a href="edukasi.php">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
+      <?php if (isset($_SESSION['id_pasien'])): ?>
+      <a href="logout.php" class="no-undlin">
+        <button class="btn-primary-log">Logout</button>
+      </a>
+    <?php else: ?>
       <a href="signin.php" class="no-undlin">
-              <button class="btn-primary-log">Masuk</button>
-            </a>
+        <button class="btn-primary-log">Masuk</button>
+      </a>
+    <?php endif; ?>
     </nav>
   </header>
 
@@ -43,7 +71,7 @@
       </p>
     </section>
 
-    <section class="team-section">
+<section class="team-section">
       <h2>Tim Kami</h2>
       <div class="card-container">
         <div class="card">

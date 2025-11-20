@@ -181,6 +181,10 @@ header {
   line-height: 1.4;
   margin: 0;
 }
+
+
+
+
 /* ========== EDUKASI PAGE ========== */
 .artikel-section {
   padding: 60px 10%;
@@ -228,7 +232,7 @@ header {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.329);
 }
 
-.btn-kembali {
+/* .btn-kembali {
   display: inline-block;
   margin-top: 20px;
   text-decoration: none;
@@ -238,7 +242,7 @@ header {
 
 .btn-kembali:hover {
   color: #00766b;
-}
+} */
 
 /* =========== detail artikelll =========== */
 .artikel-detail {

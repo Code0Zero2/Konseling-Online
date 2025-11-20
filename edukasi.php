@@ -45,9 +45,15 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
         <li><a href="edukasi.php" class="active">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
-      <a href="signin.php" class="no-undlin">
-        <button class="btn-primary-log">Masuk</button>
-      </a>
+            <?php if (isset($_SESSION['id_pasien'])): ?>
+        <a href="logout.php" class="no-undlin">
+          <button class="btn-primary-log">Logout</button>
+        </a>
+      <?php else: ?>
+        <a href="signin.php" class="no-undlin">
+          <button class="btn-primary-log">Masuk</button>
+        </a>
+      <?php endif; ?>
     </nav>
   </header>
 

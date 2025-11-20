@@ -222,9 +222,9 @@ h3 {
 }
 
 .history {
-    width: 100% auto;
+    /* width: 100% auto; */
     background: #fff;
-    margin: 30px 100px 30px 100px;
+    margin: 30px 50px 30px 50px;
     /* margin-top: 30px; */
     border-radius: 12px;
     padding: 20px;
