@@ -231,3 +231,31 @@ h3 {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.363);
 }
 
+/* crud jadwal */
+.custom-table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.custom-table thead {
+    background: #009480;
+    color: white;
+}
+
+.modal-content {
+    border-radius: 12px !important;
+    padding: 10px;
+}
+
+.modal-header {
+    background: #009480;
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+input, select {
+    border-radius: 8px !important;
+    border: 1px solid #ccc !important;
+}

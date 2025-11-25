@@ -3,47 +3,7 @@ session_start();
 include 'connection.php';
 
 // Ambil ID pasien jika login
-$pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
-
-// // Filter jadwal
-// $filter_tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
-// $filter_status = isset($_GET['status']) ? $_GET['status'] : '';
-
-// // Pagination
-// // $limit = jumlah baris per halaman (di sini 3 jadwal per halaman).
-// // $page = nomor halaman saat ini (diambil dari ?page=). (int) meng-cast ke integer untuk mencegah string.
-// // $start = offset untuk query SQL LIMIT start, limit.
-// // Contoh:
-// // Jika page=1: start = (1-1)*3 = 0 → ambil dari baris ke-0 sampai 2.
-// // Jika page=2: start = (2-1)*3 = 3 → ambil dari baris ke-3 sampai 5.
-// $limit = 3;
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $start = ($page - 1) * $limit;
-
-// // Build filter query
-// $filter_query = "";
-// if ($filter_tanggal) $filter_query .= " AND j.tanggal = '$filter_tanggal'";
-// if ($filter_status && $filter_status != 'semua') $filter_query .= " AND j.status = '$filter_status'";
-
-// // Hitung total data untuk pagination
-// $total_rows = mysqli_fetch_assoc(mysqli_query($conn, "
-//     SELECT COUNT(*) AS total 
-//     FROM jadwal_dokter j 
-//     JOIN users u ON j.dokter_id = u.user_id
-//     WHERE u.role='dokter' $filter_query
-// "))['total'];
-
-// $total_pages = ceil($total_rows / $limit);
-
-// // Ambil jadwal dokter
-// $query = mysqli_query($conn, "
-//     SELECT j.*, u.nama AS nama_dokter
-//     FROM jadwal_dokter j
-//     JOIN users u ON j.dokter_id = u.user_id
-//     WHERE u.role='dokter' $filter_query
-//     ORDER BY j.tanggal ASC
-//     LIMIT $start, $limit
-// ");
+$pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 
 // ---- FILTER ----
@@ -184,7 +144,7 @@ function batalkanBooking(bookingId) {
             <li><a href="daftar_jadwal.php" class="active">Konseling</a></li>
         </ul>
 
-        <?php if(isset($_SESSION['id_pasien'])): ?>
+        <?php if(isset($_SESSION['user_id'])): ?>
             <a href="profile.php" class="no-undlin">
               <button class="btn-primary-log">Logout</button>
             </a>
