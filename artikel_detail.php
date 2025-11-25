@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 
 // Cek apakah ada ID artikel
@@ -9,6 +10,17 @@ include 'connection.php';
 // $artikel_id = $_GET['id'];
 // $query = mysqli_query($conn, "SELECT * FROM artikel WHERE artikel_id = $artikel_id");
 // $data = mysqli_fetch_array($query);
+
+$link_beranda = 'index.php'; // default buat user atau tamu
+if(isset($_SESSION['id_pasien'])){
+    $id_user = $_SESSION['id_pasien'];
+    $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'");
+    $data_role = mysqli_fetch_assoc($cek);
+
+    if($data_role && $data_role['role'] == 'dokter'){
+        $link_beranda = 'dashboard_dokter.php';
+    }
+}
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -62,6 +74,9 @@ if(isset($_GET['id'])){
             <a href="edukasi.php" class="back-button">
                 <i class="fas fa-arrow-left"></i>
                 <span>Kembali</span>
+            </a>
+            <a href="<?= $link_beranda ?>" class="back-button" style="margin-left: 10px;">
+                <span>Beranda</span> 
             </a>
         </nav>
     </header>
