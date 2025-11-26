@@ -4,6 +4,13 @@ include 'connection.php';
 
 // Ambil ID pasien jika login
 $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
+
+// Function untuk mengambil nama pasien dari tabel users
+function getNamaPasien($conn, $id) {
+    $q = mysqli_query($conn, "SELECT nama FROM users WHERE user_id = '$id'");
+    $d = mysqli_fetch_assoc($q);
+    return $d ? $d['nama'] : "Anonim";
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -13,9 +20,8 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beranda - Edukasi Kesehatan Mental</title>
   <link rel="stylesheet" href="asset/css/style.css">
-
-  <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
+
 <?php if (isset($_SESSION['logout_success'])): ?>
 <div id="popup-logout" class="popup-overlay">
   <div class="popup-box">
@@ -56,25 +62,41 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
   </header>
 
   <!-- ======== Welcome Section ======== -->
-
   <div class="hero">
     <h1>Selamat Datang di Edukasi Kesehatan Mental</h1>
-    <p>Temukan wawasan, dukungan, dan konseling online untuk membantu kamu menjaga keseimbangan emosi dan mental.
-    </p>
-    <!-- <a href="konseling.php"><button class="btn-primary">Mulai Konseling Sekarang</button></a> -->
+    <p>Temukan wawasan, dukungan, dan konseling online untuk membantu kamu menjaga keseimbangan emosi dan mental.</p>
   </div>
 
-  <!-- ======== Testimoni ======== -->
-  <div class="scroll-container" id="scrollContainer">
-    <?php
-    include 'connection.php';
-    $query = mysqli_query($conn, "SELECT * FROM rating_testimoni");
-    while ($data = mysqli_fetch_array($query)) {
-    ?>
-      <div class="card-testi">Card 1</div>
+  <!-- ======== Testimoni (Dari Database) ======== -->
+  <section style="padding: 40px 0;">
+    <h2 style="text-align:center; color:#004d47; margin-bottom:20px;">Apa Kata Mereka?</h2>
 
-    <?php } ?>
-  </div>
+    <div class="scroll-container" id="scrollContainer">
+      <?php
+      $query = mysqli_query($conn, "SELECT * FROM rating_testimoni ORDER BY tanggal DESC");
+      while ($data = mysqli_fetch_array($query)) {
+
+        // Ambil nama pasien berdasarkan pasien_id
+        $namaPasien = getNamaPasien($conn, $data['pasien_id']);
+      ?>
+        <div class="card-testi">
+
+  <!-- Gambar kecil testimoni -->
+  <img src="asset/image/depresi.jpeg" class="testi-img" alt="Ilustrasi">
+
+  <!-- Testimoni -->
+  <p class="testi-text">
+    "<?= htmlspecialchars($data['testimoni']) ?>"
+  </p>
+
+  <!-- Nama Pasien -->
+  <span class="testi-name">– <?= htmlspecialchars($namaPasien) ?></span>
+</div>
+
+
+      <?php } ?>
+    </div>
+  </section>
 
   <!-- ======== Ajakan Konseling ======== -->
   <section class="hero" style="background:linear-gradient(to right,#e0f7f4,#f4fffe); padding:80px 10%;">
@@ -88,7 +110,6 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
     <p>© 2025 Edukasi Kesehatan Mental | Bersama untuk Indonesia Sehat Jiwa</p>
   </footer>
 
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const scrollContainer = document.getElementById("scrollContainer");
@@ -99,19 +120,16 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
 
       scrollContainer.addEventListener("mousedown", (e) => {
         isDown = true;
-        scrollContainer.classList.add("active");
         startX = e.pageX - scrollContainer.offsetLeft;
         scrollLeft = scrollContainer.scrollLeft;
       });
 
       scrollContainer.addEventListener("mouseleave", () => {
         isDown = false;
-        scrollContainer.classList.remove("active");
       });
 
       scrollContainer.addEventListener("mouseup", () => {
         isDown = false;
-        scrollContainer.classList.remove("active");
       });
 
       scrollContainer.addEventListener("mousemove", (e) => {
@@ -120,21 +138,6 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
         const x = e.pageX - scrollContainer.offsetLeft;
         const walk = (x - startX) * 1.5;
         scrollContainer.scrollLeft = scrollLeft - walk;
-      });
-
-      // Scroll wheel horizontal
-      scrollContainer.addEventListener("wheel", (e) => {
-        e.preventDefault();
-        // scrollContainer.scrollLeft += e.deltaY;
-        scrollContainer.scrollLeft += e.deltaY * 0.5; // dikurangi kecepatannya
-
-      });
-      scrollContainer.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        scrollContainer.scrollBy({
-          left: e.deltaY < 0 ? -100 : 100,
-          behavior: 'smooth'
-        });
       });
     });
   </script>

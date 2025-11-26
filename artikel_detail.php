@@ -2,16 +2,7 @@
 session_start();
 include 'connection.php';
 
-// Cek apakah ada ID artikel
-// if (!isset($_GET['id'])) {
-//     header("Location: edukasi.php");
-// }
-
-// $artikel_id = $_GET['id'];
-// $query = mysqli_query($conn, "SELECT * FROM artikel WHERE artikel_id = $artikel_id");
-// $data = mysqli_fetch_array($query);
-
-$link_beranda = 'index.php'; // default buat user atau tamu
+$link_beranda = 'index.php'; 
 if(isset($_SESSION['id_pasien'])){
     $id_user = $_SESSION['id_pasien'];
     $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'");
@@ -39,6 +30,19 @@ if(isset($_GET['id'])){
     header("Location: edukasi.php");
     exit;
 }
+
+/* =====================================================
+   FUNGSI AUTO-LINK
+   ===================================================== */
+function autoLink($text) {
+    // Deteksi URL
+    $pattern = '/(https?:\/\/[^\s]+)/i';
+
+    // Jadikan hyperlink
+    $replace = '<a href="$1" target="_blank" style="color:#0066cc; text-decoration:underline;">$1</a>';
+
+    return preg_replace($pattern, $replace, $text);
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,20 +59,6 @@ if(isset($_GET['id'])){
 <body>
 
     <!-- ======== Navbar ======== -->
-    <!-- <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.php">Beranda</a></li>
-                <li><a href="about.html">Tentang</a></li>
-                <li><a href="edukasi.php" class="active">Artikel</a></li>
-                <li><a href="daftar_jadwal.php">Konseling</a></li>
-            </ul>
-            <a href="signin.php" class="no-undlin">
-                <button class="btn-primary-log">Masuk</button>
-            </a>
-        </nav>
-    </header> -->
-
     <header class="detail-header">
         <nav class="navbar-simple">
             <a href="edukasi.php" class="back-button">
@@ -86,12 +76,14 @@ if(isset($_GET['id'])){
         <div class="artikel-container">
             <h1><?= $row['judul'] ?></h1>
             <p class="tanggal">Diterbitkan pada: <?= $row['tanggal'] ?></p>
+
             <div class="isi-artikel">
-                <?= $row['isi'] ?>
+                <?= autoLink($row['isi']) ?>
             </div>
-            <!-- <a href="edukasi.php" class="btn-kembali-art">← Kembali ke Daftar Artikel</a> -->
+
         </div>
     </main>
+
     <?php $conn->close(); ?>
 
     <!-- ======== Footer ======== -->
