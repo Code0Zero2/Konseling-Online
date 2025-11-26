@@ -240,8 +240,12 @@ h3 {
 }
 
 .custom-table thead {
+    text-align: center;
     background: #009480;
     color: white;
+}
+.custom-table tbody {
+    text-align: center;
 }
 
 .modal-content {

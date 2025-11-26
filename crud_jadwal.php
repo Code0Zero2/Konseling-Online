@@ -51,7 +51,7 @@ $query = mysqli_query($conn, "
         <h3>📅 Manajemen Jadwal Konseling</h3>
 
         <!-- <button class="btn btn-primary mb-3" onclick="openModal()">➕ Tambah Jadwal</button> -->
-         <button class="btn btn-booking mb-3" onclick="openModal()">➕ Tambah Jadwal</button>
+        <button class="btn btn-booking mb-3" onclick="openModal()">➕ Tambah Jadwal</button>
 
 
         <table class="table custom-table table-hover">
@@ -85,10 +85,11 @@ $query = mysqli_query($conn, "
                             
                             <td>
                                 <?php if ($row['booking_id']): ?>
-                                    <a href="update_statbook.php?id=<?= $row['booking_id'] ?>" 
-                                    class="btn btn-sm btn-warning">
-                                    Ubah Status
-                                    </a>
+                                    <button 
+                                        class="btn btn-sm btn-warning"
+                                        onclick="openStatusModal(<?= $row['booking_id'] ?>, '<?= $row['booking_status'] ?>')">
+                                        Ubah Status
+                                    </button>
                                 <?php endif; ?>
 
                                 <button class="btn btn-sm btn-success"
@@ -141,6 +142,37 @@ $query = mysqli_query($conn, "
   </div>
 </div>
 
+<!-- MODAL UBAH STATUS -->
+<div class="modal" id="statusModal" tabindex="-1">
+  <div class="modal-dialog">
+    <form method="POST" action="update_statbook.php" class="modal-content">
+
+        <input type="hidden" id="booking_id" name="booking_id">
+
+        <div class="modal-header">
+            <h5 class="modal-title">Ubah Status Booking</h5>
+            <button type="button" class="btn-close" onclick="closeStatusModal()"></button>
+        </div>
+
+        <div class="modal-body">
+            <label>Status Booking</label>
+            <select id="status" name="status" class="form-control" required>
+                <option value="menunggu">Menunggu</option>
+                <option value="disetujui">Disetujui</option>
+                <option value="selesai">Selesai</option>
+                <option value="dibatalkan">Dibatalkan</option>
+            </select>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+
+    </form>
+  </div>
+</div>
+
+
 <script>
 function openModal() {
     document.getElementById("jadwal_id").value = "";
@@ -160,6 +192,17 @@ function editJadwal(id, tanggal, jam) {
     document.getElementById("modalTitle").innerText = "Edit Jadwal";
     document.getElementById("jadwalModal").style.display = "block";
 }
+
+function openStatusModal(id, status) {
+    document.getElementById("booking_id").value = id;
+    document.getElementById("status").value = status;
+    document.getElementById("statusModal").style.display = "block";
+}
+
+function closeStatusModal() {
+    document.getElementById("statusModal").style.display = "none";
+}
+
 </script>
 
 </body>

@@ -3,12 +3,12 @@ session_start();
 include 'connection.php';
 
 
-if (!isset($_SESSION['id_pasien'])) {
+if (!isset($_SESSION['user_id'])) {
     header("Location: signin.php");
     exit;
 }
 
-$user_id = $_SESSION['id_pasien'];
+$user_id = $_SESSION['user_id'];
 $cek_dokter = mysqli_query($conn, "SELECT role FROM users WHERE user_id = '$user_id'");
 $data_user = mysqli_fetch_assoc($cek_dokter);
 

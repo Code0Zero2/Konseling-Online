@@ -104,6 +104,7 @@ if ($pasien_id) {
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="asset/css/jadwal.css">
+<link rel="stylesheet" href="asset/css/modal_testi.css">
 <title>Jadwal Konseling</title>
 
 <script>
@@ -157,7 +158,7 @@ function batalkanBooking(bookingId) {
         </ul>
 
         <?php if(isset($_SESSION['user_id'])): ?>
-            <a href="profile.php" class="no-undlin">
+            <a href="logout.php" class="no-undlin">
               <button class="btn-primary-log">Logout</button>
             </a>
         <?php else: ?>
@@ -269,6 +270,13 @@ function batalkanBooking(bookingId) {
             <div class="card">
                 <h4>Dr. <?=$h['nama_dokter'] ?></h4>
                 <p class="status"><?= ucfirst($h['status']) ?></p>
+
+                <?php if ($h['status'] == 'selesai'): ?>
+                    <button class="btn btn-booking" 
+                            onclick="openModalTestimoni(<?= $h['booking_id'] ?>)">
+                        ⭐ Beri Testimoni & Rating
+                    </button>
+                <?php endif; ?>
             </div>
         <?php endwhile; ?>
 
@@ -276,6 +284,89 @@ function batalkanBooking(bookingId) {
         <p class="no-data">Belum ada riwayat konseling.</p>
     <?php endif; ?>
 </div>
+
+<!-- BACKDROP -->
+<div id="modalBackdrop" class="modal-backdrop"></div>
+
+<!-- MODAL TESTIMONI -->
+<div id="testimoniModal" class="custom-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">⭐ Beri Testimoni & Rating</h5>
+                <button type="button" class="close" onclick="closeModalTestimoni()">&times;</button>
+            </div>
+
+            <form id="formTestimoni">
+                <input type="hidden" id="booking_id_testi" name="booking_id">
+
+                <div class="modal-body">
+                    <label>Rating (1–5)</label>
+                    <select name="rating" class="form-control mb-2" required>
+                        <option value="5">⭐ 5 - Sangat Baik</option>
+                        <option value="4">⭐ 4 - Baik</option>
+                        <option value="3">⭐ 3 - Cukup</option>
+                        <option value="2">⭐ 2 - Kurang</option>
+                        <option value="1">⭐ 1 - Buruk</option>
+                    </select>
+                <br>
+                    <label>Testimoni</label><br>
+                    <textarea name="pesan" class="form-control mb-2" required></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModalTestimoni()">Batal</button>
+                    <button type="submit" class="modal-btn modal-btn-primary">Kirim</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function openModalTestimoni(bookingId) {
+    document.getElementById("booking_id_testi").value = bookingId;
+
+    document.getElementById("modalBackdrop").classList.add("show");
+    document.getElementById("testimoniModal").classList.add("show");
+
+    document.body.classList.add("modal-open");
+}
+
+function closeModalTestimoni() {
+    document.getElementById("modalBackdrop").classList.remove("show");
+    document.getElementById("testimoniModal").classList.remove("show");
+
+    document.body.classList.remove("modal-open");
+}
+
+
+// AJAX submit testimoni
+document.getElementById("formTestimoni").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("simpan_testimoni.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(response => {
+        alert("Terima kasih! Testimoni berhasil dikirim.");
+        closeModalTestimoni();
+        location.reload();
+    })
+    .catch(err => {
+        alert("Gagal mengirim testimoni.");
+    });
+});
+
+</script>
+
 
 </body>
 </html>

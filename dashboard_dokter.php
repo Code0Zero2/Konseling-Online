@@ -2,7 +2,7 @@
 session_start();
 include 'connection.php';
 
-$user_id = $_SESSION['id_pasien'];
+$user_id = $_SESSION['user_id'];
 
 $cek = mysqli_query($conn, "SELECT role FROM users WHERE user_id = '$user_id'");
 $data = mysqli_fetch_assoc($cek);
@@ -50,7 +50,7 @@ if ($data['role'] != 'dokter') {
         <li><a href="edukasi.php">Artikel</a></li>
         <li><a href="daftar_jadwal.php">Konseling</a></li>
       </ul>
-      <?php if (isset($_SESSION['id_pasien'])): ?>
+      <?php if (isset($_SESSION['user_id'])): ?>
         <a href="logout.php" class="no-undlin">
           <button class="btn-primary-log">Logout</button>
         </a>

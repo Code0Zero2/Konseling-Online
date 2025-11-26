@@ -12,7 +12,7 @@ if($check > 0){
     $_SESSION['role'] = $data['role'];
     $_SESSION['nama'] = $data['nama'];
     if($data['role'] == 'dokter'){
-        header("Location: crud_jadwal.php");
+        header("Location: dashboard_dokter.php");
     } else{
         header("location: index.php");
     }
