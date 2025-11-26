@@ -88,28 +88,28 @@ $pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
       <h2>Tim Kami</h2>
       <div class="card-container">
         <div class="card">
-          <img src="asset/image/Bahlil.png" alt="Foto Nama 1" class="card-img">
+          <img src="asset/image/DOKTER.jpg" alt="Foto Nama 1" class="card-img">
           <div class="info-overlay">
-            <h3>Nama orang susah</h3>
-            <p>Spesialis dalam terapi perilaku kognitif, berpengalaman membantu remaja dan dewasa muda.</p>
-          </div>
-        </div>
+             <h3>dr. Adrian Pratama, Sp.KJ</h3>
+    <p>Berpengalaman menangani gangguan kecemasan, stres kerja, serta terapi perilaku kognitif untuk remaja dan dewasa.</p>
+  </div>
+</div>
 
         <div class="card">
-          <img src="asset/image/Bahlil.png" alt="Foto Nama 2" class="card-img">
+          <img src="asset/image/AJRUN.png" alt="Foto Nama 2" class="card-img">
           <div class="info-overlay">
-            <h3>Nama Lahar</h3>
-            <p>Berkontribusi dalam penyusunan konten edukasi kesehatan mental dan program digital.</p>
-          </div>
-        </div>
+             <h3>dr. Bima Sakti, M.Psi.</h3>
+    <p>Fokus pada konseling pengelolaan emosi, mindfulness, serta pendampingan klien dengan burnout dan masalah hubungan interpersonal.</p>
+  </div>
+</div>
 
         <div class="card">
-          <img src="asset/image/Bahlil.png" alt="Foto Nama 3" class="card-img">
+          <img src="asset/image/AJRUN2.jpg" alt="Foto Nama 3" class="card-img">
           <div class="info-overlay">
-            <h3>Nama 3</h3>
-            <p>Bertanggung jawab atas desain, sistem database, serta pengembangan fitur interaktif.</p>
-          </div>
-        </div>
+             <h3>dr. Raditya Ananda, Sp.KJ</h3>
+    <p>Ahli dalam menangani depresi jangka panjang, terapi keluarga, dan pemulihan kesehatan mental dalam lingkungan kerja.</p>
+  </div>
+</div>
       </div>
     </section>
   </main>

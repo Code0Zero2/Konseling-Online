@@ -2,13 +2,22 @@
 session_start();
 include 'connection.php';
 
+// Ambil id user dari session
 $user_id = $_SESSION['id_pasien'];
 
+// Cek role user (harus dokter)
 $cek = mysqli_query($conn, "SELECT role FROM users WHERE user_id = '$user_id'");
-$data = mysqli_fetch_assoc($cek);
+$dataRole = mysqli_fetch_assoc($cek);
 
-if ($data['role'] != 'dokter') {
-    die("Anda bukan dokter!"); 
+if ($dataRole['role'] != 'dokter') {
+    die("Anda bukan dokter!");
+}
+
+// Fungsi untuk ambil nama pasien dari tabel users
+function getNamaPasien($conn, $id) {
+    $q = mysqli_query($conn, "SELECT nama FROM users WHERE user_id = '$id'");
+    $d = mysqli_fetch_assoc($q);
+    return $d ? $d['nama'] : "Anonim";
 }
 ?>
 
@@ -18,11 +27,10 @@ if ($data['role'] != 'dokter') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda - Edukasi Kesehatan Mental</title>
+  <title>Beranda Dokter - Edukasi Kesehatan Mental</title>
   <link rel="stylesheet" href="asset/css/style.css">
-
-  <!-- <script src="assets/js/script.js" defer></script> -->
 </head>
+
 <?php if (isset($_SESSION['logout_success'])): ?>
 <div id="popup-logout" class="popup-overlay">
   <div class="popup-box">
@@ -63,7 +71,6 @@ if ($data['role'] != 'dokter') {
   </header>
 
   <!-- ======== Welcome Section ======== -->
-
   <div class="hero">
     <h1>Selamat Datang, Dok!</h1>
     <p>Selamat datang di dashboard dokter. Anda bisa mengelola jadwal atau membagikan ilmu kesehatan mental.</p>
@@ -75,17 +82,36 @@ if ($data['role'] != 'dokter') {
     </div>
   </div>
 
-  <!-- ======== Testimoni ======== -->
-  <div class="scroll-container" id="scrollContainer">
-    <?php
-    include 'connection.php';
-    $query = mysqli_query($conn, "SELECT * FROM rating_testimoni");
-    while ($data = mysqli_fetch_array($query)) {
-    ?>
-      <div class="card-testi">Card 1</div>
+  <!-- ======== Testimoni Pasien ======== -->
+  <section style="padding: 40px 0;">
+    <h2 style="text-align:center; color:#004d47; margin-bottom:20px;">
+      Apa Kata Pasien Anda?
+    </h2>
 
-    <?php } ?>
-  </div>
+    <div class="scroll-container" id="scrollContainer">
+      <?php
+      // Ambil semua rating & testimoni, terbaru dulu
+      $queryTesti = mysqli_query($conn, "SELECT * FROM rating_testimoni ORDER BY tanggal DESC");
+      while ($rowTesti = mysqli_fetch_array($queryTesti)) {
+
+        // Ambil nama pasien berdasarkan pasien_id
+        $namaPasien = getNamaPasien($conn, $rowTesti['pasien_id']);
+      ?>
+        <div class="card-testi">
+          <!-- Gambar ilustrasi -->
+          <img src="asset/image/depresi.jpeg" class="testi-img" alt="Ilustrasi">
+
+          <!-- Isi testimoni -->
+          <p class="testi-text">
+            "<?= htmlspecialchars($rowTesti['testimoni']) ?>"
+          </p>
+
+          <!-- Nama pasien -->
+          <span class="testi-name">– <?= htmlspecialchars($namaPasien) ?></span>
+        </div>
+      <?php } ?>
+    </div>
+  </section>
 
   <!-- ======== Ajakan Konseling ======== -->
   <section class="hero" style="background:linear-gradient(to right,#e0f7f4,#f4fffe); padding:80px 10%;">
@@ -99,7 +125,6 @@ if ($data['role'] != 'dokter') {
     <p>© 2025 Edukasi Kesehatan Mental | Bersama untuk Indonesia Sehat Jiwa</p>
   </footer>
 
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const scrollContainer = document.getElementById("scrollContainer");
@@ -110,19 +135,16 @@ if ($data['role'] != 'dokter') {
 
       scrollContainer.addEventListener("mousedown", (e) => {
         isDown = true;
-        scrollContainer.classList.add("active");
         startX = e.pageX - scrollContainer.offsetLeft;
         scrollLeft = scrollContainer.scrollLeft;
       });
 
       scrollContainer.addEventListener("mouseleave", () => {
         isDown = false;
-        scrollContainer.classList.remove("active");
       });
 
       scrollContainer.addEventListener("mouseup", () => {
         isDown = false;
-        scrollContainer.classList.remove("active");
       });
 
       scrollContainer.addEventListener("mousemove", (e) => {
@@ -133,20 +155,7 @@ if ($data['role'] != 'dokter') {
         scrollContainer.scrollLeft = scrollLeft - walk;
       });
 
-      // Scroll wheel horizontal
-      scrollContainer.addEventListener("wheel", (e) => {
-        e.preventDefault();
-        // scrollContainer.scrollLeft += e.deltaY;
-        scrollContainer.scrollLeft += e.deltaY * 0.5; // dikurangi kecepatannya
-
-      });
-      scrollContainer.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        scrollContainer.scrollBy({
-          left: e.deltaY < 0 ? -100 : 100,
-          behavior: 'smooth'
-        });
-      });
+      // Scroll dengan drag terasa halus, wheel pakai default browser
     });
   </script>
 </body>
