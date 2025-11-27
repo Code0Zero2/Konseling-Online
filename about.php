@@ -107,7 +107,8 @@ $pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         <div class="card">
           <img src="asset/image/AJRUN.png" alt="Foto Nama 2" class="card-img">
           <div class="info-overlay">
-             <h3>dr. Bima Sakti, M.Psi.</h3>
+             <h3>Azarya Shalom Widura</h3>
+             <h5>123240232</h5>
     <p>Fokus pada konseling pengelolaan emosi, mindfulness, serta pendampingan klien dengan burnout dan masalah hubungan interpersonal.</p>
   </div>
 </div>
@@ -115,7 +116,8 @@ $pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         <div class="card">
           <img src="asset/image/AJRUN2.jpg" alt="Foto Nama 3" class="card-img">
           <div class="info-overlay">
-             <h3>dr. Raditya Ananda, Sp.KJ</h3>
+             <h3>Muhammad Dzikri Ginoga</h3>
+             <h5>123240237</h5>
     <p>Ahli dalam menangani depresi jangka panjang, terapi keluarga, dan pemulihan kesehatan mental dalam lingkungan kerja.</p>
   </div>
 </div>
