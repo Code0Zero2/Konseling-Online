@@ -4,8 +4,8 @@ include 'connection.php';
 
 $link_beranda = 'index.php';
 
-if(isset($_SESSION['id_pasien'])){
-  $id_user = $_SESSION['id_pasien'];
+if(isset($_SESSION['user_id'])){
+  $id_user = $_SESSION['user_id'];
 
   $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'"); 
   $data_role = mysqli_fetch_assoc($cek);
@@ -15,7 +15,7 @@ if(isset($_SESSION['id_pasien'])){
   }
 }
 
-$pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
+$pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 /* =====================================================
    FUNGSI AUTO-LINK
@@ -60,12 +60,19 @@ function autoLink($text) {
   <header>
     <nav class="navbar">
       <ul>
-        <li><a href="<?= $link_beranda ?>">Beranda</a></li>
+        <li><a href="index.php">Beranda</a></li>
         <li><a href="about.php">Tentang</a></li>
         <li><a href="edukasi.php" class="active">Artikel</a></li>
-        <li><a href="daftar_jadwal.php">Konseling</a></li>
+        <?php 
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 'dokter') {
+          echo '<li><a href="dashboard_dokter.php">Dashboard</a></li>';
+        } else {
+          echo '<li><a href="daftar_jadwal.php">Konseling</a></li>';
+        }
+        ?>
+        <!-- <li><a href="daftar_jadwal.php">Konseling</a></li> -->
       </ul>
-      <?php if (isset($_SESSION['id_pasien'])): ?>
+      <?php if (isset($_SESSION['user_id'])): ?>
         <a href="logout.php" class="no-undlin">
           <button class="btn-primary-log">Logout</button>
         </a>

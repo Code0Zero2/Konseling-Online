@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
 
     if ($update) {
-        header("location:crud_jadwal.php?success=update");
+        header("location:dashboard_dokter.php?success=update");
     } else {
-        header("location:crud_jadwal.php?error=update_gagal");
+        header("location:dashboard_dokter.php?error=update_gagal");
     }
     exit;
 }

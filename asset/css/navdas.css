@@ -1,0 +1,173 @@
+.my-header {
+  /* font-family: 'Poppins', sans-serif; */
+  background-color: #e0f7f4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  justify-content: right;
+}
+
+.my-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+
+}
+
+.my-navbar ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.my-navbar a {
+  all: unset;
+  text-decoration: none;
+  color: #006d67;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer !important;
+}
+
+/* .my-navbar a.no-undlin:hover,
+.my-navbar a.no-undlin.active {
+  all: unset;
+  border-bottom: none;
+  padding-bottom: 0;
+} */
+
+.my-navbar a:hover,
+.my-navbar a.active {
+  all: unset;
+  color: #008f85;
+  border-bottom: 2px solid #008f85;
+  padding-bottom: 4px;
+}
+
+/* Tombol custom di navbar */
+.my-navbar a.btn-primary-log {
+  background-color: #008f85 !important;
+  color: #fff !important;
+  border: none !important;
+  margin-left: 20px !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: 0.3s !important;
+  font-size: 13px !important;
+  letter-spacing: 0.2px !important;
+  /* font-weight: 200 !important; */
+  text-decoration: none !important;
+
+  /* TAMBAHAN PENTING untuk menghapus padding bootstrap */
+  line-height: normal !important;
+  height: auto !important;
+  display: inline-block !important;
+  box-shadow: none !important;
+
+  /* Hapus style navbar bootstrap */
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* Hover */
+.my-navbar a.btn-primary-log:hover {
+  background-color: #007970 !important;
+}
+
+
+.stats-doc{
+  /* display: flex;
+    flex-direction: row; */
+    /* gap: 20px; */
+    background-color: #50918c;
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.363);
+    /* padding: 20px; */
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 10px;
+}
+
+.card {
+    background: #fff;
+    padding: 15px; /* lebih kecil */
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 14px;
+}
+
+.card p {
+    font-size: 20px; /* lebih kecil */
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* canvas.small-chart {
+    max-width: 400px;
+    max-height: 250px;
+    margin-bottom: 20px;
+} */
+
+.charts-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.chart-card {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* CSS untuk menjaga rasio chart */
+canvas {
+  padding: 20px;
+    width: 100%;
+    height: auto; /* biar tinggi menyesuaikan rasio chart */
+    max-height: 350px; /* batasi tinggi maksimal */
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.534);
+}
+
+.salam{
+  display: inline-block; 
+    padding: 10px 20px;    
+    margin: 20px 0;        
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.534);
+}
+
+
+.wave {
+    display: inline-block;
+    animation: wave 2s ;
+    transform-origin: 50% 70%; 
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(17deg); }
+    30% { transform: rotate(-9deg); }
+    40% { transform: rotate(17deg); }
+    50% { transform: rotate(-5deg); }
+    60% { transform: rotate(12deg); }
+    70% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+}

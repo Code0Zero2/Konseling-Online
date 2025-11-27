@@ -2,12 +2,12 @@
 session_start();
 include 'connection.php';
 
-if(!isset($_SESSION['id_pasien'])){
+if(!isset($_SESSION['user_id'])){
     header('Location: signin.php');
     exit;
 }
 
-$dokter_id = $_SESSION['id_pasien'];
+$dokter_id = $_SESSION['user_id'];
 $judul = $_POST['judul'];
 $isi = $_POST['isi'];
 $tanggal = date('Y-m-d H:i:s');

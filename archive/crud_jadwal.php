@@ -35,7 +35,7 @@ $query = mysqli_query($conn, "
 <body>
 
 <header>
-    <nav class="navbar">
+    <nav class="navbar-crud">
         <ul>
             <li><a href="dokter_dashboard.php">Dashboard</a></li>
             <li><a href="dokter_jadwal.php" class="active">Jadwal</a></li>

@@ -2,9 +2,12 @@
 include 'connection.php';
 session_start();
 
-// Contoh pasien login (ganti dengan session login aslimu)
-// $pasien_id = 5;
-$pasien_id = $_SESSION['id_pasien'];
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signin.php");
+    exit;
+}
+
+$pasien_id = $_SESSION['user_id'];
 
 // Pastikan ada jadwal_id
 if (!isset($_GET['jadwal_id'])) {
@@ -27,53 +30,47 @@ if (!$jadwal) {
     exit;
 }
 
-// Cek apakah jadwal penuh
-// if ($jadwal['status'] == "penuh") {
-//     echo "<script>alert('Jadwal sudah penuh!'); window.location='daftar_jadwal.php';</script>";
-//     exit;
-// }
-
-// Cek apakah jadwal sudah ada yang booking
-$cek_slot = mysqli_fetch_assoc(mysqli_query($conn, "
-    SELECT COUNT(*) AS total FROM booking 
-    WHERE jadwal_id='$jadwal_id' AND status IN ('menunggu','disetujui')
-"));
-
-if ($cek_slot['total'] >= 1) {
-    echo "<script>alert('Jadwal sudah penuh!'); window.location='daftar_jadwal.php';</script>";
-    exit;
-}
-
-
-// Cek apakah pasien sudah pernah booking jadwal yg sama
-$cek_booking = mysqli_fetch_assoc(mysqli_query($conn, "
-    SELECT * FROM booking 
-    WHERE pasien_id='$pasien_id' AND jadwal_id='$jadwal_id'
-"));
-
-if ($cek_booking) {
-    echo "<script>alert('Anda sudah pernah booking jadwal ini!'); window.location='daftar_jadwal.php';</script>";
-    exit;
-}
-
-// --- Jika tombol submit ditekan ---
 if (isset($_POST['submit'])) {
-
     $catatan = mysqli_real_escape_string($conn, $_POST['catatan']);
     $dokter_id = $jadwal['dokter_id'];
 
-    // Simpan booking baru
-    $insert = mysqli_query($conn, "
+    // Cek apakah jadwal sudah ada yang booking
+    $cek_slot = mysqli_fetch_assoc(mysqli_query($conn, "
+        SELECT COUNT(*) AS total FROM booking 
+        WHERE jadwal_id='$jadwal_id' AND status IN ('menunggu','disetujui')
+    "));
+
+    if ($cek_slot['total'] >= 1) {
+        echo "<script>alert('Jadwal sudah penuh!'); window.location='daftar_jadwal.php';</script>";
+        exit;
+    }
+
+    // Cek apakah pasien sudah pernah booking jadwal yg sama
+    $cek_booking = mysqli_fetch_assoc(mysqli_query($conn, "
+        SELECT * FROM booking 
+        WHERE pasien_id='$pasien_id' AND jadwal_id='$jadwal_id'
+    "));
+
+    if ($cek_booking) {
+        echo "<script>alert('Anda sudah pernah booking jadwal ini!'); window.location='daftar_jadwal.php';</script>";
+        exit;
+    }
+
+    // Insert booking baru
+    mysqli_query($conn, "
         INSERT INTO booking (pasien_id, dokter_id, jadwal_id, status, catatan)
         VALUES ('$pasien_id', '$dokter_id', '$jadwal_id', 'menunggu', '$catatan')
     ");
 
-    if ($insert) {
-        echo "<script>alert('Booking berhasil! Menunggu persetujuan dokter.'); window.location='daftar_jadwal.php';</script>";
-        exit;
-    } else {
-        echo "<script>alert('Gagal booking, coba lagi.');</script>";
-    }
+    // Update status jadwal jadi penuh
+    mysqli_query($conn, "
+        UPDATE jadwal_dokter 
+        SET status='penuh' 
+        WHERE jadwal_id='$jadwal_id'
+    ");
+
+    echo "<script>alert('Booking berhasil! Menunggu persetujuan dokter.'); window.location='daftar_jadwal.php';</script>";
+    exit;
 }
 
 ?>

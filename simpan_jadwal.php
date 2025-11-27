@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
 
     if (mysqli_num_rows($cek) > 0) {
-        header("Location: crud_jadwal.php?error=duplikat");
+        header("Location: dashboard_dokter.php?error=duplikat");
         exit;
     }
 
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "
         );
         if ($update) {
-            header("location:crud_jadwal.php?success=edit");
+            header("location:dashboard_dokter.php?success=edit");
         } else {
-            header("location:crud_jadwal.php?error=update_gagal");
+            header("location:dashboard_dokter.php?error=update_gagal");
         }
         exit;
     }
@@ -55,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "
     );
     if ($insert) {
-        header("location:crud_jadwal.php?success=tambah");
+        header("location:dashboard_dokter.php?success=tambah");
     } else {
-        header("location:crud_jadwal.php?error=tambah_gagal");
+        header("location:dashboard_dokter.php?error=tambah_gagal");
     }
     exit;
 }

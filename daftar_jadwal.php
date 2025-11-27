@@ -2,18 +2,18 @@
 session_start();
 include 'connection.php';
 
-$link_beranda = 'index.php';
+// $link_beranda = 'index.php';
 
-if(isset($_SESSION['id_pasien'])){
-  $id_user = $_SESSION['id_pasien'];
+// if(isset($_SESSION['id_pasien'])){
+//   $id_user = $_SESSION['id_pasien'];
 
-  $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'"); // ambil role user buat cek role
-  $data_role = mysqli_fetch_assoc($cek);
+//   $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'"); // ambil role user buat cek role
+//   $data_role = mysqli_fetch_assoc($cek);
 
-  if($data_role && $data_role['role'] == 'dokter'){
-    $link_beranda = 'dashboard_dokter.php';
-  }
-}
+//   if($data_role && $data_role['role'] == 'dokter'){
+//     $link_beranda = 'dashboard_dokter.php';
+//   }
+// }
 // Ambil ID pasien jika login
 $pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
@@ -151,7 +151,7 @@ function batalkanBooking(bookingId) {
 <header>
     <nav class="navbar">
         <ul>
-            <li><a href="<?= $link_beranda ?>" >Beranda</a></li>
+            <li><a href="index.php" >Beranda</a></li>
             <li><a href="about.php">Tentang</a></li>
             <li><a href="edukasi.php">Artikel</a></li>
             <li><a href="daftar_jadwal.php" class="active">Konseling</a></li>
@@ -344,7 +344,6 @@ function closeModalTestimoni() {
 }
 
 
-// AJAX submit testimoni
 document.getElementById("formTestimoni").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -356,14 +355,31 @@ document.getElementById("formTestimoni").addEventListener("submit", function(e){
     })
     .then(res => res.text())
     .then(response => {
-        alert("Terima kasih! Testimoni berhasil dikirim.");
-        closeModalTestimoni();
-        location.reload();
+
+        response = response.trim(); // pastikan tidak ada spasi/enter
+
+        if (response === "INSERT_SUCCESS") {
+            alert("Terima kasih! Testimoni Anda berhasil disimpan.");
+            closeModalTestimoni();
+            location.reload();
+
+        } else if (response === "UPDATE_SUCCESS") {
+            alert("Testimoni Anda berhasil diperbarui.");
+            closeModalTestimoni();
+            location.reload();
+
+        } else {
+            console.error("Gagal:", response);
+            alert("Gagal mengirim testimoni.\nDetail: " + response);
+        }
+        
     })
     .catch(err => {
-        alert("Gagal mengirim testimoni.");
+        console.error("Error:", err);
+        alert("Terjadi kesalahan koneksi saat mengirim testimoni.");
     });
 });
+
 
 </script>
 

@@ -3,13 +3,14 @@ session_start();
 include 'connection.php';
 
 // Ambil ID pasien jika login
-$pasien_id = isset($_SESSION['id_pasien']) ? $_SESSION['id_pasien'] : null;
+$pasien_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 // Function untuk mengambil nama pasien dari tabel users
-function getNamaPasien($conn, $id) {
-    $q = mysqli_query($conn, "SELECT nama FROM users WHERE user_id = '$id'");
-    $d = mysqli_fetch_assoc($q);
-    return $d ? $d['nama'] : "Anonim";
+function getNamaPasien($conn, $id)
+{
+  $q = mysqli_query($conn, "SELECT nama FROM users WHERE user_id = '$id'");
+  $d = mysqli_fetch_assoc($q);
+  return $d ? $d['nama'] : "Anonim";
 }
 ?>
 <!DOCTYPE html>
@@ -23,21 +24,22 @@ function getNamaPasien($conn, $id) {
 </head>
 
 <?php if (isset($_SESSION['logout_success'])): ?>
-<div id="popup-logout" class="popup-overlay">
-  <div class="popup-box">
+  <div id="popup-logout" class="popup-overlay">
+    <div class="popup-box">
       <h3>Berhasil Logout</h3>
       <p>Kamu telah keluar dari akun.</p>
       <button id="closePopup">Tutup</button>
+    </div>
   </div>
-</div>
 
-<script>
-  document.getElementById("closePopup").addEventListener("click", function() {
+  <script>
+    document.getElementById("closePopup").addEventListener("click", function() {
       document.getElementById("popup-logout").style.display = "none";
-  });
-</script>
+    });
+  </script>
 
-<?php unset($_SESSION['logout_success']); endif; ?>
+<?php unset($_SESSION['logout_success']);
+endif; ?>
 
 <body>
   <!-- ======== Navbar ======== -->
@@ -47,9 +49,16 @@ function getNamaPasien($conn, $id) {
         <li><a href="index.php" class="active">Beranda</a></li>
         <li><a href="about.php">Tentang</a></li>
         <li><a href="edukasi.php">Artikel</a></li>
-        <li><a href="daftar_jadwal.php">Konseling</a></li>
+        <?php
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 'dokter') {
+          echo '<li><a href="dashboard_dokter.php">Dashboard</a></li>';
+        } else {
+          echo '<li><a href="daftar_jadwal.php">Konseling</a></li>';
+        }
+        ?>
+        <!-- <li><a href="daftar_jadwal.php">Konseling</a></li> -->
       </ul>
-      <?php if (isset($_SESSION['id_pasien'])): ?>
+      <?php if (isset($_SESSION['user_id'])): ?>
         <a href="logout.php" class="no-undlin">
           <button class="btn-primary-log">Logout</button>
         </a>
@@ -62,10 +71,33 @@ function getNamaPasien($conn, $id) {
   </header>
 
   <!-- ======== Welcome Section ======== -->
-  <div class="hero">
-    <h1>Selamat Datang di Edukasi Kesehatan Mental</h1>
-    <p>Temukan wawasan, dukungan, dan konseling online untuk membantu kamu menjaga keseimbangan emosi dan mental.</p>
-  </div>
+  <?php
+  if (isset($_SESSION['role']) && $_SESSION['role'] == 'dokter') { ?>
+    <div class="hero">
+    <!-- <p class="bg-dkt" style="background-image: url(/asset/image/DOKTER.jpg); "></p> -->
+      <div class="con-hero">
+
+        <h1>Selamat Datang, Dok!</h1>
+          <p>Selamat datang di dashboard dokter. Anda bisa mengelola jadwal atau membagikan ilmu kesehatan mental.</p>
+    
+          <div style="margin-top: 20px;">
+            <a href="tambah_artikel.php">
+              <button class="btn-primary" style="background-color: #e67e22;">+ Tulis Artikel Baru</button>
+            </a>
+          </div>
+      </div>
+    </div>
+  <?php } else { ?>
+    <div class="hero">
+      <div class="con-hero">
+        <h1>Selamat Datang di Edukasi Kesehatan Mental</h1>
+        <p>Temukan wawasan, dukungan, dan konseling online untuk membantu kamu menjaga keseimbangan emosi dan mental.</p>
+        
+      </div>
+    </div>
+  <?php
+  }
+  ?>
 
   <!-- ======== Testimoni (Dari Database) ======== -->
   <section style="padding: 40px 0;">
@@ -73,7 +105,7 @@ function getNamaPasien($conn, $id) {
 
     <div class="scroll-container" id="scrollContainer">
       <?php
-      $query = mysqli_query($conn, "SELECT * FROM rating_testimoni ORDER BY tanggal DESC");
+      $query = mysqli_query($conn, "SELECT * FROM rating_testimoni ORDER BY tanggal DESC LIMIT 10");
       while ($data = mysqli_fetch_array($query)) {
 
         // Ambil nama pasien berdasarkan pasien_id
@@ -81,17 +113,17 @@ function getNamaPasien($conn, $id) {
       ?>
         <div class="card-testi">
 
-  <!-- Gambar kecil testimoni -->
-  <img src="asset/image/depresi.jpeg" class="testi-img" alt="Ilustrasi">
+          <!-- Gambar kecil testimoni -->
+          <img src="asset/image/depresi.jpeg" class="testi-img" alt="Ilustrasi">
 
-  <!-- Testimoni -->
-  <p class="testi-text">
-    "<?= htmlspecialchars($data['testimoni']) ?>"
-  </p>
+          <!-- Testimoni -->
+          <p class="testi-text">
+            "<?= htmlspecialchars($data['testimoni']) ?>"
+          </p>
 
-  <!-- Nama Pasien -->
-  <span class="testi-name">– <?= htmlspecialchars($namaPasien) ?></span>
-</div>
+          <!-- Nama Pasien -->
+          <span class="testi-name">– <?= htmlspecialchars($namaPasien) ?></span>
+        </div>
 
 
       <?php } ?>

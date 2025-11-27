@@ -2,16 +2,16 @@
 session_start();
 include 'connection.php';
 
-$link_beranda = 'index.php'; 
-if(isset($_SESSION['id_pasien'])){
-    $id_user = $_SESSION['id_pasien'];
-    $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'");
-    $data_role = mysqli_fetch_assoc($cek);
+// $link_beranda = 'index.php'; 
+// if(isset($_SESSION['id_pasien'])){
+//     $id_user = $_SESSION['id_pasien'];
+//     $cek = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id_user'");
+//     $data_role = mysqli_fetch_assoc($cek);
 
-    if($data_role && $data_role['role'] == 'dokter'){
-        $link_beranda = 'dashboard_dokter.php';
-    }
-}
+//     if($data_role && $data_role['role'] == 'dokter'){
+//         $link_beranda = 'dashboard_dokter.php';
+//     }
+// }
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];

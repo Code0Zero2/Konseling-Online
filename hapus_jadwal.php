@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     ");
 
     if (mysqli_num_rows($cek) == 0) {
-        header("Location: crud_jadwal.php?error=unauthorized");
+        header("Location: dashboard_dokter.php?error=unauthorized");
         exit;
     }
 
@@ -29,9 +29,9 @@ if (isset($_GET['id'])) {
         WHERE jadwal_id = '$jadwal_id'"
     );
     if ($hapus) {
-        header("location:crud_jadwal.php?success=hapus");
+        header("location:dashboard_dokter.php?success=hapus");
     } else {
-        header("location:crud_jadwal.php?error=hapus_gagal");
+        header("location:dashboard_dokter.php?error=hapus_gagal");
     }
     exit;
 }

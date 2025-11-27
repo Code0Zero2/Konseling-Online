@@ -20,11 +20,6 @@ header {
 
 }
 
-.navbar .logo {
-  width: 120px;
-  height: auto;
-}
-
 .navbar ul {
   list-style: none;
   display: flex;
@@ -262,4 +257,31 @@ h3 {
 input, select {
     border-radius: 8px !important;
     border: 1px solid #ccc !important;
+}
+
+
+/* container scroll untuk tabel */
+.table-container {
+    max-height: 350px; 
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+/* Sticky Header */
+.custom-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #009480 !important; 
+    color: white !important;
+}
+
+/* Lebih rapi untuk baris */
+.custom-table tbody tr {
+    background: #fff;
+    transition: 0.1s;
+}
+
+.custom-table tbody tr:hover {
+    background: #f2fefc;
 }
