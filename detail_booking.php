@@ -71,10 +71,10 @@ $status = $book['status_booking'];
                 Chat WhatsApp
             </a>
 
-            <a class="btn-blue"
+            <!-- <a class="btn-blue"
                 href="mailto:<?= $book['email'] ?>?subject=Konsultasi%20Konseling">
                 Kirim Email
-            </a>
+            </a> -->
 
         <?php else: ?>
             <p class="info-note">Kontak hanya tersedia jika jadwal sudah disetujui dokter.</p>

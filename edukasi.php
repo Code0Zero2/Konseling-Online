@@ -68,14 +68,15 @@ function autoLink($text) {
           echo '<li><a href="dashboard_dokter.php">Dashboard</a></li>';
         } else {
           echo '<li><a href="daftar_jadwal.php">Konseling</a></li>';
+          echo '<li><a href="layanan_aduan.php">Layanan aduan</a></li>';
         }
         ?>
         <!-- <li><a href="daftar_jadwal.php">Konseling</a></li> -->
       </ul>
       <?php if (isset($_SESSION['user_id'])): ?>
-        <a href="logout.php" class="no-undlin">
-          <button class="btn-primary-log">Logout</button>
-        </a>
+        <a href="profil.php" class="no-undlin">
+        <button class="btn-primary-log">Profil</button>
+      </a>
       <?php else: ?>
         <a href="signin.php" class="no-undlin">
           <button class="btn-primary-log">Masuk</button>

@@ -90,7 +90,7 @@ $query = mysqli_query($conn, "
     FROM jadwal_dokter jd
     LEFT JOIN booking b ON jd.jadwal_id = b.jadwal_id
     WHERE jd.dokter_id = '$dokter_id'
-    AND jd.status = 'tersedia'
+    AND jd.status IN ('tersedia', 'penuh')
     AND (
         b.status IN ('menunggu', 'disetujui') 
         OR b.status IS NULL
@@ -134,7 +134,7 @@ $history = mysqli_query($conn, "
                 <!-- <a href="logout.php" class="no-undlin">
           <button class="btn-primary-log">Logout</button>
         </a> -->
-                <a href="logout.php" class="btn-primary-log">Logout</a>
+                <a href="profil.php" class="btn-primary-log">Profil</a>
             <?php else: ?>
                 <!-- <a href="signin.php" class="no-undlin">
           <button class="btn-primary-log">Masuk</button>

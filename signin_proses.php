@@ -20,7 +20,24 @@ if($check > 0){
 }
 
 else {
-    header("location:signin.php?condition=failedlogin");
+    // header("location:signin.php?condition=failedlogin");
+    echo "
+    <html>
+    <head>
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    </head>
+    <body>
+        <script>
+            Swal.fire({
+                icon: 'Failed',
+                title: 'Gagal!',
+                text: 'Email atau password salah.',
+            }).then(() => {
+                window.location.href = 'signin.php';
+            });
+        </script>
+    </body>
+    </html>";
 }
 
 ?>

@@ -95,7 +95,7 @@ function batalkanBooking(bookingId) {
         <div class="filter-box">
             <form method="GET">
                 <label>Tanggal</label>
-                <input type="date" name="tanggal" value="<?= htmlspecialchars($filter_tanggal) ?>">
+                <input type="date" name="tanggal" value="<?= $filter_tanggal ?>">
 
                 <label>Status</label>
                 <select name="status">
@@ -112,8 +112,8 @@ function batalkanBooking(bookingId) {
         <?php if (mysqli_num_rows($query) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($query)): ?>
             <div class="card">
-                <h4>Dr. <?= htmlspecialchars($row['nama_dokter']) ?></h4>
-                <p>📅 <?= date('d F Y', strtotime($row['tanggal'])) ?> — ⏰ <?= htmlspecialchars($row['jam']) ?></p>
+                <h4>Dr. <?= $row['nama_dokter'] ?></h4>
+                <p>📅 <?= date('d F Y', strtotime($row['tanggal'])) ?> — ⏰ <?= $row['jam'] ?></p>
                 <?php if ($row['status'] == 'tersedia'): ?>
                     <p class="status tersedia">✔ Tersedia</p>
                     <a href="booking.php?jadwal_id=<?= $row['jadwal_id'] ?>" class="btn btn-booking">Booking</a>
@@ -142,8 +142,8 @@ function batalkanBooking(bookingId) {
         <?php if (mysqli_num_rows($booking_query) > 0): ?>
             <?php while($book = mysqli_fetch_assoc($booking_query)): ?>
             <div class="card">
-                <h4>Dr. <?= htmlspecialchars($book['nama_dokter']) ?></h4>
-                <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= htmlspecialchars($book['jam']) ?></p>
+                <h4>Dr. <?= $book['nama_dokter'] ?></h4>
+                <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= $book['jam'] ?></p>
                 <p>Status:
                     <span class="badge <?= $book['status_booking']=='menunggu'?'bg-warning':($book['status_booking']=='selesai'?'bg-success':'bg-danger') ?>">
                         <?= ucfirst($book['status_booking']) ?>
@@ -173,7 +173,7 @@ function batalkanBooking(bookingId) {
         ");
         while($h = mysqli_fetch_assoc($query_history)): ?>
         <div class="card">
-            <h4>Dr. <?= htmlspecialchars($h['nama_dokter']) ?></h4>
+            <h4>Dr. <?= $h['nama_dokter'] ?></h4>
             <!-- <p>📅 <?= date('d F Y', strtotime($h['tanggal'])) ?> - ⏰ <?= $h['jam'] ?></p> -->
             <p class="status"><?= ucfirst($h['status']) ?></p>
         </div>
@@ -532,7 +532,7 @@ function batalkanBooking(bookingId) {
         <div class="filter-box">
             <form method="GET">
                 <label>Tanggal</label>
-                <input type="date" name="tanggal" value="<?= htmlspecialchars($filter_tanggal) ?>">
+                <input type="date" name="tanggal" value="<?= $filter_tanggal ?>">
 
                 <label>Status</label>
                 <select name="status">
@@ -549,8 +549,8 @@ function batalkanBooking(bookingId) {
         <?php if (mysqli_num_rows($query) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($query)): ?>
             <div class="card">
-                <h4>Dr. <?= htmlspecialchars($row['nama_dokter']) ?></h4>
-                <p>📅 <?= date('d F Y', strtotime($row['tanggal'])) ?> — ⏰ <?= htmlspecialchars($row['jam']) ?></p>
+                <h4>Dr. <?= $row['nama_dokter'] ?></h4>
+                <p>📅 <?= date('d F Y', strtotime($row['tanggal'])) ?> — ⏰ <?= $row['jam'] ?></p>
                 <?php if ($row['status'] == 'tersedia'): ?>
                     <p class="status tersedia">✔ Tersedia</p>
                     <a href="booking.php?jadwal_id=<?= $row['jadwal_id'] ?>" class="btn btn-booking">Booking</a>
@@ -579,8 +579,8 @@ function batalkanBooking(bookingId) {
         <?php if (mysqli_num_rows($booking_query) > 0): ?>
             <?php while($book = mysqli_fetch_assoc($booking_query)): ?>
             <div class="card">
-                <h4>Dr. <?= htmlspecialchars($book['nama_dokter']) ?></h4>
-                <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= htmlspecialchars($book['jam']) ?></p>
+                <h4>Dr. <?= $book['nama_dokter'] ?></h4>
+                <p>📅 <?= date('d F Y', strtotime($book['tanggal'])) ?> — ⏰ <?= $book['jam'] ?></p>
                 <p>Status:
                     <span class="badge <?= $book['status_booking']=='menunggu'?'bg-warning':($book['status_booking']=='selesai'?'bg-success':'bg-danger') ?>">
                         <?= ucfirst($book['status_booking']) ?>
@@ -623,7 +623,7 @@ function batalkanBooking(bookingId) {
         // ");
         while($h = mysqli_fetch_assoc($query_history)): ?>
         <div class="card">
-            <h4>Dr. <?= htmlspecialchars($h['nama_dokter']) ?></h4>
+            <h4>Dr. <?= $h['nama_dokter'] ?></h4>
             <!-- <p>📅 <?= date('d F Y', strtotime($h['tanggal'])) ?> - ⏰ <?= $h['jam'] ?></p> -->
             <p class="status"><?= ucfirst($h['status']) ?></p>
         </div>

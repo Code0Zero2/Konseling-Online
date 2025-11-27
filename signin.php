@@ -16,7 +16,7 @@
             <button type="submit">Login</button>
         </form>
         <div class="footer">
-            Belum punya akun? <a href="signup.php">Daftar</a>
+            Belum punya akun? <a href="signup.php">Daftar</a> | <a style="color: rgba(0, 47, 255, 0.84);" href="index.php">Kembali</a>
         </div>
     </div>
 </body>

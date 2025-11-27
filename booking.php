@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
         <h3>📝 Booking Konseling</h3>
 
         <div class="card">
-            <h4>Dr. <?= htmlspecialchars($jadwal['nama_dokter']) ?></h4>
+            <h4>Dr. <?= $jadwal['nama_dokter'] ?></h4>
             <p>📅 <?= date('d F Y', strtotime($jadwal['tanggal'])) ?></p>
             <p>⏰ <?= $jadwal['jam'] ?></p>
 
