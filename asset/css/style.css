@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +5,19 @@
   font-family: "Poppins", sans-serif;
 }
 
-html{
+/* TAMBAHAN supaya tinggi halaman penuh layar */
+html {
   scroll-behavior: smooth;
+  height: 100%;
 }
+
+/* TAMBAHAN: body jadi flex container vertikal */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 
 /* navbar */
 header {
@@ -194,8 +203,9 @@ header {
 
 /* ========== EDUKASI PAGE ========== */
 .artikel-section {
-  padding: 60px 10%;
+  padding: 60px 10% 40px 10%; /* padding-bottom 40px */
 }
+
 
 .artikel-card {
   background: #fff;
@@ -226,6 +236,9 @@ header {
 
 .btn-baca:hover {
   background-color: #007c73;
+}
+main.edukasi {
+  flex: 1;
 }
 
 /* ========== ARTIKEL ========== */
@@ -356,8 +369,9 @@ footer {
   color: #004d47;
   text-align: center;
   padding: 15px;
-  margin-top: 60px;
+  margin-top: auto;  /* penting: dorong ke bawah */
 }
+
 
 /* ====tabel===== */
 .container-jadwal {
