@@ -36,6 +36,7 @@ if (isset($_POST['simpan'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,30 +44,69 @@ if (isset($_POST['simpan'])) {
     <link rel="stylesheet" href="asset/css/style.css">
     <style>
         /* Styling khusus form agar rapi di tengah */
-        body { background-color: #f9fcfc; }
+        body {
+            background-color: #f9fcfc;
+        }
+
         .form-container {
-            max-width: 800px;
+            width: 80%;
+            /* lebar 80% layar */
+            max-width: 1100px;
+            /* tapi dibatasi maksimal 1100px */
             margin: 50px auto;
+            /* tetap di tengah */
             background: #fff;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #004d47; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;
+
+        .form-group {
+            margin-bottom: 20px;
         }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #004d47;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
         .btn-submit {
-            background-color: #008f85; color: white; padding: 12px 24px; border: none;
-            border-radius: 8px; cursor: pointer; font-size: 16px; width: 100%; font-weight: bold;
+            background-color: #008f85;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-weight: bold;
         }
-        .btn-submit:hover { background-color: #007970; }
+
+        .btn-submit:hover {
+            background-color: #007970;
+        }
+
         .btn-batal {
-            display: block; text-align: center; margin-top: 15px; color: #666; text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            text-decoration: none;
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -80,7 +120,7 @@ if (isset($_POST['simpan'])) {
 
     <div class="form-container">
         <h2 style="text-align:center; color:#004d47; margin-bottom:30px;">Tulis Artikel Baru</h2>
-        
+
         <form action="input_proses.php" method="POST">
             <div class="form-group">
                 <label>Judul Artikel</label>
@@ -98,4 +138,5 @@ if (isset($_POST['simpan'])) {
     </div>
 
 </body>
+
 </html>
